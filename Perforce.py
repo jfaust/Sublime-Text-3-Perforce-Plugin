@@ -229,7 +229,7 @@ def AppendToChangelistDescription(changelist, input):
     return 1, result
 
 def PerforceCommandOnFile(in_command, in_folder, in_filename):
-    command = ConstructCommand('p4 {0} "{1}"'.format(in_command, in_filename))
+    command = ConstructCommand('p4 {0} "{1}"'.format(in_command, os.path.realpath(in_filename)))
     p = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, cwd=global_folder, shell=True)
     result, err = p.communicate()
     result = result.decode("utf-8")
